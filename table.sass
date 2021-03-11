@@ -1,0 +1,187 @@
+.scheduleTable
+  position: relative
+
+  .weekStudyDay
+    padding: 20px
+    position: absolute
+    background-color: white
+    width: 75px
+    height: 100%
+    left: -75px
+    z-index: 4
+    border-right: 1px solid #808080
+    writing-mode: tb-rl
+    &:before
+      content: ''
+      display: block
+      bottom: 100%
+      height: 14px
+      transition: .3s
+      right: -1px
+      border-right: 1px solid #808080
+      width: 100%
+      background-color: white
+      position: absolute
+
+  .scheduleGradesHeader
+    padding-left: 70px
+    position: absolute
+    top: 0
+    left: 0
+    display: flex
+    justify-content: space-between
+
+  .scheduleGradesList
+    padding-left: 70px
+    position: relative
+    display: flex
+    justify-content: space-between
+
+    .gradeVerticalRow
+      text-align: center
+      position: relative
+      transition: .2s
+      margin-top: 0
+
+      &.active
+        background-color: #e4ff0014
+
+      &.passive
+        background-color: #e6f2f7
+
+    .columnGradeWrapper
+      padding: 3px
+      background-color: white
+      position: absolute
+      top: 0
+      z-index: 5
+      border-bottom: 1px solid #808080
+      width: 100%
+
+  .gradeTimeSheetWrap
+    border: 1px solid grey
+    margin: 10px 5px
+    border-radius: 3px
+    padding: 5px 65px 5px 5px
+
+
+
+    .droppableWrapOverflow
+      width: 200px
+      .roomToScheduleWrap
+        position: absolute
+        margin: 0 12px
+        right: 0
+        background-color: #e6f2f7
+        padding: 3px 0
+        border-radius: 3px
+        width: 57px
+        height: 21px
+        line-height: 13px
+        font-size: 12px
+        font-style: italic
+        &.clickable
+          cursor: pointer
+          height: 22px
+          border: 1px solid black
+        &.duplicate
+          background-color: #e975649e
+
+    .countNumberForSubjects
+      position: absolute
+      left: 2px
+      top: -2px
+      z-index: 2
+      height: 15px
+      padding: 0 3px
+      margin: 1px 0
+
+  .gradeTimeSheetRowDrop
+    margin: 3px 0
+    overflow: hidden
+    width: 200px
+    border: 1px solid transparent
+    border-radius: 3px
+    position: relative
+    .singleItemFromSchedule
+      white-space: nowrap
+      overflow: hidden
+      text-overflow: ellipsis
+      cursor: pointer
+      outline: none
+      &:hover
+        color: #0f9960
+      &.withDivider:first-of-type
+        &:before
+          content: ''
+          position: absolute
+          display: block
+          left: 100px
+          width: 1px
+          height: 100%
+          background-color: black
+
+    &.horizontal
+      display: flex
+
+    .gradeTimeSheetRow
+      border-radius: 3px
+      background-color: #e6f2f7
+      width: 200px
+      text-align: left
+      height: 20px
+      padding: 0 3px 0 20px
+      color: #4a4a4a
+      &.withGroup
+        width: 100px
+
+    &.isGrade:not(.dragging)
+      border-color: #4a4a4a
+
+      .gradeTimeSheetRow
+        &.duplicate
+          background-color: #e975649e
+
+    &.dragging
+      border-color: #5072ff
+
+      &:before
+        content: '*'
+        display: block
+        position: absolute
+        right: 2px
+        top: 4px
+        color: #5072ff
+
+      .gradeTimeSheetRow
+        background-color: transparent
+        border: 1px solid transparent
+
+
+.fixWidthToPopoverSchedule
+  width: 260px
+  text-align: center
+
+.wiggleAnimation
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both
+  transform: translate3d(0, 0, 0)
+  backface-visibility: hidden
+  perspective: 1000px
+
+@keyframes shake
+  10%, 90%
+    transform: translate3d(-1px, 0, 0)
+  20%, 80%
+    transform: translate3d(2px, 0, 0)
+  30%, 50%, 70%
+    transform: translate3d(-4px, 0, 0)
+
+  40%, 60%
+    transform: translate3d(4px, 0, 0)
+
+.popoverForRooms
+  padding: 10px
+  .bp3-control-group.bp3-numeric-input
+    flex-basis: 80%
+    .bp3-input-group
+      max-width: 100%
